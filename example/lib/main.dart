@@ -63,7 +63,7 @@ class StepIndicatorPageViewDemo extends StatelessWidget {
             color: Color(0xffffffff),
             child: Center(
               child: Text(
-                "Page $index",
+                "Page ${index + 1}",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
