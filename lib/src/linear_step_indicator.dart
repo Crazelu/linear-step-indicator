@@ -21,6 +21,7 @@ class LinearStepIndicator extends StatefulWidget {
   final Color iconColor;
   final Color backgroundColor;
   final Complete? complete;
+  final double verticalPadding;
   const LinearStepIndicator({
     Key? key,
     required this.steps,
@@ -32,9 +33,10 @@ class LinearStepIndicator extends StatefulWidget {
     this.activeNodeColor = kActiveColor,
     this.inActiveNodeColor = kInActiveNodeColor,
     this.iconSize = kIconSize,
-    this.completedIcon = kCompletedIcon,
+    this.completedIcon = kCompletedIcon, //Icon showed when a step is completed
     this.nodeThickness = kDefaultThickness,
     this.nodeSize = kDefaultSize,
+    this.verticalPadding = kDefaultSize,
     this.lineHeight = kDefaultLineHeight,
     this.shape = BoxShape.circle,
     this.iconColor = kIconColor,
@@ -97,6 +99,7 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
       color: widget.backgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,

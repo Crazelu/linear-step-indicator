@@ -29,6 +29,11 @@ class StepIndicatorDemo extends StatelessWidget {
         child: LinearStepIndicator(
           steps: 3,
           controller: PageController(),
+          complete: () {
+            //typically, you'd want to put logic that returns true when all the steps
+            //are completed here
+            return Future.value(true);
+          },
         ),
       ),
     );
@@ -44,7 +49,9 @@ class StepIndicatorPageViewDemo extends StatelessWidget {
       child: StepIndicatorPageView(
         steps: 3,
         controller: PageController(),
-        complete: () async {
+        complete: () {
+          //typically, you'd want to put logic that returns true when all the steps
+          //are completed here
           return Future.value(true);
         },
         children: List<Widget>.generate(
