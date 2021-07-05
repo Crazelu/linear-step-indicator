@@ -20,6 +20,7 @@ class LinearStepIndicator extends StatefulWidget {
   final BoxShape shape;
   final Color iconColor;
   final Color backgroundColor;
+  final Complete? complete;
   const LinearStepIndicator({
     Key? key,
     required this.steps,
@@ -38,6 +39,7 @@ class LinearStepIndicator extends StatefulWidget {
     this.shape = BoxShape.circle,
     this.iconColor = kIconColor,
     this.backgroundColor = kIconColor,
+    this.complete,
   })  : assert(steps > 0, "steps value must be a non-zero positive integer"),
         super(key: key);
 
@@ -54,16 +56,35 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
     super.initState();
     nodes = List<Node>.generate(widget.steps, (index) => Node(step: index));
     lastStep = 0;
-    widget.controller.addListener(() {
-      if (widget.controller.page! > lastStep) {
-        setState(() {
-          nodes[lastStep].completed = true;
-          lastStep = widget.controller.page!.ceil();
-        });
-      }
-    });
+
+    //listen to page changes to track when each step is ideally completed
+
+    widget.controller.addListener(
+      () async {
+        if (widget.controller.page! > lastStep) {
+          setState(
+            () {
+              nodes[lastStep].completed = true;
+              lastStep = widget.controller.page!.ceil();
+            },
+          );
+        }
+
+        //checks if the controller has hit the max step
+        //and checks [complete] to complete last node (or not)
+
+        if (widget.controller.page! == widget.steps - 1 &&
+            widget.complete != null) {
+          if (await widget.complete!()) {
+            nodes[widget.steps - 1].completed = true;
+            setState(() {});
+          }
+        }
+      },
+    );
   }
 
+  //returns active or inactive color depending on the completion status of [node]
   Color getColor(Node node) => node.completed || lastStep == node.step
       ? widget.activeBorderColor
       : widget.inActiveBorderColor;

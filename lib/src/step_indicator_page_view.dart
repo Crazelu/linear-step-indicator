@@ -9,6 +9,7 @@ class StepIndicatorPageView extends StatelessWidget {
   final List<Widget> children;
   final Color backgroundColor;
   final double spacing;
+  final Complete? complete;
 
   const StepIndicatorPageView({
     Key? key,
@@ -17,6 +18,7 @@ class StepIndicatorPageView extends StatelessWidget {
     required this.children,
     this.spacing = 20,
     this.backgroundColor = kIconColor,
+    this.complete,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,7 @@ class StepIndicatorPageView extends StatelessWidget {
               steps: steps,
               controller: controller,
               backgroundColor: backgroundColor,
+              complete: complete,
             ),
             SizedBox(height: spacing),
             Expanded(

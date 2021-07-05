@@ -44,6 +44,9 @@ class StepIndicatorPageViewDemo extends StatelessWidget {
       child: StepIndicatorPageView(
         steps: 3,
         controller: PageController(),
+        complete: () async {
+          return Future.value(true);
+        },
         children: List<Widget>.generate(
           3,
           (index) => Container(

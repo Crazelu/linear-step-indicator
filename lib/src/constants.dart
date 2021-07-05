@@ -11,3 +11,4 @@ const Color kInActiveNodeColor = Colors.transparent;
 const Color kActiveLineColor = kActiveColor;
 const Color kInActiveLineColor = kInActiveColor;
 const Color kIconColor = Colors.white;
+typedef Future<bool> Complete();
