@@ -54,9 +54,10 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
     lastStep = 0;
     widget.controller.addListener(() {
       if (widget.controller.page! > lastStep) {
-        nodes[lastStep].completed = true;
-        lastStep = widget.controller.page!.floor();
-        setState(() {});
+        setState(() {
+          nodes[lastStep].completed = true;
+          lastStep = widget.controller.page!.ceil();
+        });
       }
     });
   }

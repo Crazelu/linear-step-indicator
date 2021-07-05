@@ -17,17 +17,20 @@ class StepIndicatorPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          LinearStepIndicator(steps: steps, controller: controller),
-          SizedBox(height: spacing),
-          Expanded(
-            child: PageView(
-              children: children,
+    return SafeArea(
+      child: Container(
+        child: Column(
+          children: [
+            LinearStepIndicator(steps: steps, controller: controller),
+            SizedBox(height: spacing),
+            Expanded(
+              child: PageView(
+                controller: controller,
+                children: children,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

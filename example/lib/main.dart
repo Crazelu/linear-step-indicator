@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: StepIndicatorDemo(),
+      home: StepIndicatorPageViewDemo(),
     );
   }
 }
@@ -29,6 +29,35 @@ class StepIndicatorDemo extends StatelessWidget {
         child: LinearStepIndicator(
           steps: 3,
           controller: PageController(),
+        ),
+      ),
+    );
+  }
+}
+
+class StepIndicatorPageViewDemo extends StatelessWidget {
+  const StepIndicatorPageViewDemo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: StepIndicatorPageView(
+        steps: 3,
+        controller: PageController(),
+        children: List<Widget>.generate(
+          3,
+          (index) => Container(
+            color: Color(0xffffffff),
+            child: Center(
+              child: Text(
+                "$index",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
         ),
       ),
     );
