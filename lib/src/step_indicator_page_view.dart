@@ -24,6 +24,8 @@ class StepIndicatorPageView extends StatelessWidget {
   final Complete? complete;
   final double verticalPadding;
   final double spacing;
+  final double bottomSpacing;
+  final IndicatorPosition indicatorPosition;
 
   const StepIndicatorPageView({
     Key? key,
@@ -46,6 +48,8 @@ class StepIndicatorPageView extends StatelessWidget {
     this.iconColor = kIconColor,
     this.backgroundColor = kIconColor,
     this.spacing = kDefaultSize,
+    this.bottomSpacing = 0,
+    this.indicatorPosition = IndicatorPosition.top,
     this.complete,
   }) : super(key: key);
 
@@ -56,36 +60,64 @@ class StepIndicatorPageView extends StatelessWidget {
         color: backgroundColor,
         child: Column(
           children: [
-            LinearStepIndicator(
-              steps: steps,
-              controller: controller,
-              backgroundColor: backgroundColor,
-              complete: complete,
-              activeBorderColor: activeBorderColor,
-              inActiveBorderColor: inActiveBorderColor,
-              activeLineColor: activeLineColor,
-              inActiveLineColor: inActiveLineColor,
-              activeNodeColor: activeNodeColor,
-              inActiveNodeColor: inActiveNodeColor,
-              shape: shape,
-              iconColor: iconColor,
-              iconSize: iconSize,
-              verticalPadding: verticalPadding,
-              completedIcon: completedIcon,
-              lineHeight: lineHeight,
-              nodeSize: nodeSize,
-              nodeThickness: nodeThickness,
-            ),
-            SizedBox(height: spacing),
+            if (indicatorPosition == IndicatorPosition.top) ...[
+              LinearStepIndicator(
+                steps: steps,
+                controller: controller,
+                backgroundColor: backgroundColor,
+                complete: complete,
+                activeBorderColor: activeBorderColor,
+                inActiveBorderColor: inActiveBorderColor,
+                activeLineColor: activeLineColor,
+                inActiveLineColor: inActiveLineColor,
+                activeNodeColor: activeNodeColor,
+                inActiveNodeColor: inActiveNodeColor,
+                shape: shape,
+                iconColor: iconColor,
+                iconSize: iconSize,
+                verticalPadding: verticalPadding,
+                completedIcon: completedIcon,
+                lineHeight: lineHeight,
+                nodeSize: nodeSize,
+                nodeThickness: nodeThickness,
+              ),
+              SizedBox(height: spacing),
+            ],
             Expanded(
               child: PageView(
                 controller: controller,
                 children: children,
               ),
             ),
+            if (indicatorPosition == IndicatorPosition.bottom) ...[
+              SizedBox(height: spacing),
+              LinearStepIndicator(
+                steps: steps,
+                controller: controller,
+                backgroundColor: backgroundColor,
+                complete: complete,
+                activeBorderColor: activeBorderColor,
+                inActiveBorderColor: inActiveBorderColor,
+                activeLineColor: activeLineColor,
+                inActiveLineColor: inActiveLineColor,
+                activeNodeColor: activeNodeColor,
+                inActiveNodeColor: inActiveNodeColor,
+                shape: shape,
+                iconColor: iconColor,
+                iconSize: iconSize,
+                verticalPadding: verticalPadding,
+                completedIcon: completedIcon,
+                lineHeight: lineHeight,
+                nodeSize: nodeSize,
+                nodeThickness: nodeThickness,
+              ),
+              SizedBox(height: bottomSpacing),
+            ],
           ],
         ),
       ),
     );
   }
 }
+
+enum IndicatorPosition { top, bottom }

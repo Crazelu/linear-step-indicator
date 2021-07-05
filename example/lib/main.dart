@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:linear_step_indicator/linear_step_indicator.dart';
 
+const int STEPS = 3;
+
 void main() {
   runApp(MyApp());
 }
@@ -27,7 +29,7 @@ class StepIndicatorDemo extends StatelessWidget {
     return Container(
       child: Center(
         child: LinearStepIndicator(
-          steps: 3,
+          steps: STEPS,
           controller: PageController(),
           complete: () {
             //typically, you'd want to put logic that returns true when all the steps
@@ -47,7 +49,8 @@ class StepIndicatorPageViewDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: StepIndicatorPageView(
-        steps: 3,
+        steps: STEPS,
+        indicatorPosition: IndicatorPosition.bottom,
         controller: PageController(),
         complete: () {
           //typically, you'd want to put logic that returns true when all the steps
@@ -55,12 +58,12 @@ class StepIndicatorPageViewDemo extends StatelessWidget {
           return Future.value(true);
         },
         children: List<Widget>.generate(
-          3,
+          STEPS,
           (index) => Container(
             color: Color(0xffffffff),
             child: Center(
               child: Text(
-                "$index",
+                "Page $index",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.w500,
