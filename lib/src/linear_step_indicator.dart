@@ -36,7 +36,8 @@ class LinearStepIndicator extends StatefulWidget {
     this.lineHeight = kDefaultLineHeight,
     this.shape = BoxShape.circle,
     this.iconColor = kIconColor,
-  }) : super(key: key);
+  })  : assert(steps > 0, "steps value must be a non-zero positive integer"),
+        super(key: key);
 
   @override
   _LinearStepIndicatorState createState() => _LinearStepIndicatorState();
@@ -108,7 +109,7 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
                 height: widget.lineHeight,
                 width: widget.steps > 3
                     ? context.screenWidth(1 / widget.steps) - 20
-                    : context.screenWidth(1 / widget.steps) + 10,
+                    : context.screenWidth(1 / widget.steps) + 20,
               ),
           ],
         ],
