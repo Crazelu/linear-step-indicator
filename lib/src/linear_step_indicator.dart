@@ -19,6 +19,7 @@ class LinearStepIndicator extends StatefulWidget {
   final double nodeThickness;
   final BoxShape shape;
   final Color iconColor;
+  final Color backgroundColor;
   const LinearStepIndicator({
     Key? key,
     required this.steps,
@@ -36,6 +37,7 @@ class LinearStepIndicator extends StatefulWidget {
     this.lineHeight = kDefaultLineHeight,
     this.shape = BoxShape.circle,
     this.iconColor = kIconColor,
+    this.backgroundColor = kIconColor,
   })  : assert(steps > 0, "steps value must be a non-zero positive integer"),
         super(key: key);
 
@@ -74,6 +76,7 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: widget.backgroundColor,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

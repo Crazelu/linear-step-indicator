@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:linear_step_indicator/src/linear_step_indicator.dart';
 
+import 'constants.dart';
+
 class StepIndicatorPageView extends StatelessWidget {
   final int steps;
   final PageController controller;
   final List<Widget> children;
+  final Color backgroundColor;
   final double spacing;
 
   const StepIndicatorPageView({
@@ -13,15 +16,21 @@ class StepIndicatorPageView extends StatelessWidget {
     required this.controller,
     required this.children,
     this.spacing = 20,
+    this.backgroundColor = kIconColor,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        color: backgroundColor,
         child: Column(
           children: [
-            LinearStepIndicator(steps: steps, controller: controller),
+            LinearStepIndicator(
+              steps: steps,
+              controller: controller,
+              backgroundColor: backgroundColor,
+            ),
             SizedBox(height: spacing),
             Expanded(
               child: PageView(
