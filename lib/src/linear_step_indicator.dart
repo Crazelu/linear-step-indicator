@@ -18,6 +18,7 @@ class LinearStepIndicator extends StatefulWidget {
   final Color inActiveNodeColor;
   final double nodeThickness;
   final BoxShape shape;
+  final Color iconColor;
   const LinearStepIndicator({
     Key? key,
     required this.steps,
@@ -34,6 +35,7 @@ class LinearStepIndicator extends StatefulWidget {
     this.nodeSize = kDefaultSize,
     this.lineHeight = kDefaultLineHeight,
     this.shape = BoxShape.circle,
+    this.iconColor = kIconColor,
   }) : super(key: key);
 
   @override
@@ -94,6 +96,7 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
                   ? Icon(
                       widget.completedIcon,
                       size: widget.iconSize,
+                      color: widget.iconColor,
                     )
                   : null,
             ),

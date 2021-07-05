@@ -27,7 +27,7 @@ class StepIndicatorDemo extends StatelessWidget {
     return Container(
       child: Center(
         child: LinearStepIndicator(
-          steps: 3,
+          steps: 4,
           controller: PageController(),
         ),
       ),
