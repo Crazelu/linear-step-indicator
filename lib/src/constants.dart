@@ -7,6 +7,6 @@ const double kDefaultLineHeight = 2.5;
 const IconData kCompletedIcon = Icons.check_outlined;
 const Color kActiveColor = Colors.green;
 const Color kInActiveColor = const Color(0xffc4c4c4);
-const Color kInActiveNodeColor = const Color(0xff75767c);
+const Color kInActiveNodeColor = Colors.transparent;
 const Color kActiveLineColor = kActiveColor;
 const Color kInActiveLineColor = kActiveColor;
