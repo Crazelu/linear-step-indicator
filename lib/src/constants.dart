@@ -9,4 +9,4 @@ const Color kActiveColor = Colors.green;
 const Color kInActiveColor = const Color(0xffc4c4c4);
 const Color kInActiveNodeColor = Colors.transparent;
 const Color kActiveLineColor = kActiveColor;
-const Color kInActiveLineColor = kActiveColor;
+const Color kInActiveLineColor = kInActiveColor;
