@@ -42,16 +42,23 @@ class StepIndicatorDemo extends StatelessWidget {
   }
 }
 
-class StepIndicatorPageViewDemo extends StatelessWidget {
+class StepIndicatorPageViewDemo extends StatefulWidget {
   const StepIndicatorPageViewDemo({Key? key}) : super(key: key);
 
+  @override
+  _StepIndicatorPageViewDemoState createState() =>
+      _StepIndicatorPageViewDemoState();
+}
+
+class _StepIndicatorPageViewDemoState extends State<StepIndicatorPageViewDemo> {
+  final _pageController = PageController();
   @override
   Widget build(BuildContext context) {
     return Material(
       child: StepIndicatorPageView(
         steps: STEPS,
-        indicatorPosition: IndicatorPosition.bottom,
-        controller: PageController(),
+        indicatorPosition: IndicatorPosition.top,
+        controller: _pageController,
         complete: () {
           //typically, you'd want to put logic that returns true when all the steps
           //are completed here
