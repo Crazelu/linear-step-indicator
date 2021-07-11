@@ -72,6 +72,15 @@ class StepIndicatorPageView extends StatelessWidget {
   ///Indicator's position
   final IndicatorPosition indicatorPosition;
 
+  ///Labels for individual nodes
+  final List<String> labels;
+
+  ///Textstyle for an active label
+  final TextStyle? activeLabelStyle;
+
+  ///Textstyle for an inactive label
+  final TextStyle? inActiveLabelStyle;
+
   const StepIndicatorPageView({
     Key? key,
     required this.steps,
@@ -96,6 +105,9 @@ class StepIndicatorPageView extends StatelessWidget {
     this.bottomSpacing = 0,
     this.indicatorPosition = IndicatorPosition.top,
     this.complete,
+    this.activeLabelStyle,
+    this.inActiveLabelStyle,
+    this.labels = const <String>[],
   }) : super(key: key);
 
   @override
@@ -107,6 +119,7 @@ class StepIndicatorPageView extends StatelessWidget {
           children: [
             if (indicatorPosition == IndicatorPosition.top) ...[
               LinearStepIndicator(
+                labels: labels,
                 steps: steps,
                 controller: controller,
                 backgroundColor: backgroundColor,
@@ -125,6 +138,8 @@ class StepIndicatorPageView extends StatelessWidget {
                 lineHeight: lineHeight,
                 nodeSize: nodeSize,
                 nodeThickness: nodeThickness,
+                activeLabelStyle: activeLabelStyle,
+                inActiveLabelStyle: inActiveLabelStyle,
               ),
               SizedBox(height: spacing),
             ],

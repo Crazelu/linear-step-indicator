@@ -61,6 +61,15 @@ class LinearStepIndicator extends StatefulWidget {
   ///Step indicator's vertical padding
   final double verticalPadding;
 
+  ///Labels for individual nodes
+  final List<String> labels;
+
+  ///Textstyle for an active label
+  final TextStyle? activeLabelStyle;
+
+  ///Textstyle for an inactive label
+  final TextStyle? inActiveLabelStyle;
+
   const LinearStepIndicator({
     Key? key,
     required this.steps,
@@ -81,7 +90,12 @@ class LinearStepIndicator extends StatefulWidget {
     this.iconColor = kIconColor,
     this.backgroundColor = kIconColor,
     this.complete,
+    this.labels = const <String>[],
+    this.activeLabelStyle,
+    this.inActiveLabelStyle,
   })  : assert(steps > 0, "steps value must be a non-zero positive integer"),
+        assert(labels.length == steps || labels.length == 0,
+            "Provide exactly $steps strings for labels"),
         super(key: key);
 
   @override
@@ -135,51 +149,92 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
         width: widget.nodeThickness,
       );
 
+  TextStyle getTextStyle(String label) {
+    var currentIndex = widget.labels.indexOf(label);
+    if (nodes[currentIndex].completed || currentIndex == lastStep) {
+      //return active text style
+      return widget.activeLabelStyle ??
+          TextStyle(color: widget.activeLineColor);
+    } else {
+      //return inactive text style
+      return widget.inActiveLabelStyle ??
+          TextStyle(color: widget.inActiveLineColor);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
-      color: widget.backgroundColor,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          for (var node in nodes) ...[
-            Container(
-              alignment: Alignment.topCenter,
-              height: widget.nodeSize,
-              width: widget.nodeSize,
-              decoration: BoxDecoration(
-                color: node.completed
-                    ? widget.activeNodeColor
-                    : widget.inActiveNodeColor,
-                border: Border(
-                  bottom: side(node),
-                  top: side(node),
-                  left: side(node),
-                  right: side(node),
-                ),
-                shape: widget.shape,
+    return Material(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: widget.verticalPadding),
+        color: widget.backgroundColor,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (widget.labels.length > 0) ...[
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  for (var label in widget.labels) ...[
+                    Text(
+                      label,
+                      style: getTextStyle(label),
+                    ),
+                    if (label != widget.labels[widget.steps - 1]) ...[
+                      SizedBox(
+                        width: widget.steps > 3
+                            ? context.screenWidth(1 / widget.steps) - 40
+                            : context.screenWidth(1 / widget.steps),
+                      ),
+                    ],
+                  ],
+                ],
               ),
-              child: node.completed
-                  ? Icon(
-                      widget.completedIcon,
-                      size: widget.iconSize,
-                      color: widget.iconColor,
-                    )
-                  : null,
+              SizedBox(height: 12),
+            ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for (var node in nodes) ...[
+                  Container(
+                    alignment: Alignment.topCenter,
+                    height: widget.nodeSize,
+                    width: widget.nodeSize,
+                    decoration: BoxDecoration(
+                      color: node.completed
+                          ? widget.activeNodeColor
+                          : widget.inActiveNodeColor,
+                      border: Border(
+                        bottom: side(node),
+                        top: side(node),
+                        left: side(node),
+                        right: side(node),
+                      ),
+                      shape: widget.shape,
+                    ),
+                    child: node.completed
+                        ? Icon(
+                            widget.completedIcon,
+                            size: widget.iconSize,
+                            color: widget.iconColor,
+                          )
+                        : null,
+                  ),
+                  if (node.step != widget.steps - 1)
+                    Container(
+                      color: node.completed
+                          ? widget.activeLineColor
+                          : widget.inActiveLineColor,
+                      height: widget.lineHeight,
+                      width: widget.steps > 3
+                          ? context.screenWidth(1 / widget.steps) - 15
+                          : context.screenWidth(1 / widget.steps) + 20,
+                    ),
+                ],
+              ],
             ),
-            if (node.step != widget.steps - 1)
-              Container(
-                color: node.completed
-                    ? widget.activeLineColor
-                    : widget.inActiveLineColor,
-                height: widget.lineHeight,
-                width: widget.steps > 3
-                    ? context.screenWidth(1 / widget.steps) - 20
-                    : context.screenWidth(1 / widget.steps) + 20,
-              ),
           ],
-        ],
+        ),
       ),
     );
   }
