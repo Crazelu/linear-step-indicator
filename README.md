@@ -34,6 +34,13 @@ LinearStepIndicator(
         )
 ```
 
+
+
+![Indicator](https://github.com/Crazelu/linear-step-indicator/blob/main/assets/indicator.png)
+
+
+
+
 ```dart
 StepIndicatorPageView(
         steps: 3,
@@ -62,6 +69,8 @@ StepIndicatorPageView(
         ),
       )
 ```
+
+<img src="https://github.com/Crazelu/linear-step-indicator/blob/main/assets/indicator-page.png" width="400" height="800">
 
 ## Contributions
 
