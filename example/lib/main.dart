@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:linear_step_indicator/linear_step_indicator.dart';
 
-const int STEPS = 5;
+const int STEPS = 3;
 
 void main() {
   runApp(MyApp());
