@@ -8,7 +8,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  linear_step_indicator: ^1.0.0
+  linear_step_indicator: ^1.0.0+1
 ```
 
 Import the package in your project:
