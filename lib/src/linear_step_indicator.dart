@@ -183,8 +183,8 @@ class _LinearStepIndicatorState extends State<LinearStepIndicator> {
                     if (label != widget.labels[widget.steps - 1]) ...[
                       SizedBox(
                         width: widget.steps > 3
-                            ? context.screenWidth(1 / widget.steps) - 35
-                            : context.screenWidth(1 / widget.steps),
+                            ? context.screenWidth(1 / widget.steps) - 45
+                            : context.screenWidth(1 / widget.steps) - 12,
                       ),
                     ],
                   ],
