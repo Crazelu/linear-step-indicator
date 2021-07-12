@@ -70,7 +70,7 @@ StepIndicatorPageView(
       )
 ```
 
-<img src="https://github.com/Crazelu/linear-step-indicator/blob/main/assets/indicator-page.png" width="400" height="800">
+<img src="https://raw.githubusercontent.com/Crazelu/linear-step-indicator/main/assets/indicator-page.png" width="400" height="800">
 
 ## Contributions
 
