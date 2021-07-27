@@ -8,7 +8,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  linear_step_indicator: ^1.0.0+1
+  linear_step_indicator: ^1.0.0+2
 ```
 
 Import the package in your project:
@@ -24,7 +24,7 @@ Examples:
 ```dart
 LinearStepIndicator(
           steps: 3,
-          controller: PageController(),
+          controller: _pageController,
           labels: List<String>.generate(3, (index) => "Step ${index + 1}"),
           complete: () {
             //typically, you'd want to put logic that returns true when all the steps
