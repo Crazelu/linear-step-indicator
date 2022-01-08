@@ -1,7 +1,7 @@
 name: linear_step_indicator
 description: A Flutter package for adding beautiful step indicators in your apps.
 homepage: https://github.com/Crazelu/linear-step-indicator
-version: 1.0.0+2
+version: 1.0.0+3
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
