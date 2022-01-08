@@ -81,6 +81,17 @@ class StepIndicatorPageView extends StatelessWidget {
   ///Textstyle for an inactive label
   final TextStyle? inActiveLabelStyle;
 
+  /// How the page view should respond to user input.
+  ///
+  /// For example, determines how the page view continues to animate after the
+  /// user stops dragging the page view.
+  ///
+  /// The physics are modified to snap to page boundaries using
+  /// [PageScrollPhysics] prior to being used.
+  ///
+  /// Defaults to matching platform conventions.
+  final ScrollPhysics? physics;
+
   const StepIndicatorPageView({
     Key? key,
     required this.steps,
@@ -104,10 +115,11 @@ class StepIndicatorPageView extends StatelessWidget {
     this.spacing = kDefaultSize,
     this.bottomSpacing = 0,
     this.indicatorPosition = IndicatorPosition.top,
+    this.labels = const <String>[],
     this.complete,
     this.activeLabelStyle,
     this.inActiveLabelStyle,
-    this.labels = const <String>[],
+    this.physics,
   }) : super(key: key);
 
   @override
@@ -145,6 +157,7 @@ class StepIndicatorPageView extends StatelessWidget {
             ],
             Expanded(
               child: PageView(
+                physics: physics,
                 controller: controller,
                 children: children,
               ),
