@@ -8,7 +8,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 
 ```yaml
 dependencies:
-  linear_step_indicator: ^1.0.0+2
+  linear_step_indicator: ^1.0.0+3
 ```
 
 Import the package in your project:
@@ -20,6 +20,29 @@ import 'package:linear_step_indicator/linear_step_indicator.dart';
 ## Getting Started
 
 Examples:
+
+```dart
+FullLinearStepIndicator(
+          steps: 5,
+          lineHeight: 3.5,
+          activeNodeColor: Colors.brown,
+          inActiveNodeColor: const Color(0xffd1d5d8),
+          activeLineColor: Colors.brown,
+          inActiveLineColor: const Color(0xffd1d5d8),
+          controller: pageController,
+          labels: List<String>.generate(STEPS, (index) => "Step ${index + 1}"),
+          complete: () {
+            //typically, you'd want to put logic that returns true when all the steps
+            //are completed here
+            return Future.value(true);
+          },
+        )
+```
+
+
+
+![Indicator](https://github.com/Crazelu/linear-step-indicator/blob/main/assets/full-linear-indicator.png)
+
 
 ```dart
 LinearStepIndicator(
